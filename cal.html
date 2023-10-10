@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Calculator</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+
+        .cal {
+            background-color: #333;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+        }
+
+        .cal input[type="text"] {
+            width: 100%;
+            font-size: 24px;
+            padding: 10px;
+            margin-bottom: 10px;
+        }
+
+        .cal .buttons {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 10px;
+        }
+
+        .cal button {
+            font-size: 20px;
+            padding: 10px;
+            border: none;
+            cursor: pointer;
+            background-color: #444;
+            color: white;
+            border-radius: 5px;
+        }
+
+        .cal button:hover {
+            background-color: #555;
+        }
+    </style>
+</head>
+<body>
+    <div class="cal">
+        <input type="text" id="result" value="0" readonly>
+        <div class="buttons">
+            <button onclick="clearResult()">C</button>
+            <button onclick="Result('7')">7</button>
+            <button onclick="Result('8')">8</button>
+            <button onclick="Result('9')">9</button>
+            <button onclick="Result('4')">4</button>
+            <button onclick="Result('5')">5</button>
+            <button onclick="Result('6')">6</button>
+            <button onclick="Result('1')">1</button>
+            <button onclick="Result('2')">2</button>
+            <button onclick="Result('3')">3</button>
+            <button onclick="Result('0')">0</button>
+            <button onclick="Result('.')">.</button>
+            <button onclick="calculateResult()">=</button>
+            <button onclick="Result('+')">+</button>
+            <button onclick="Result('-')">-</button>
+            <button onclick="Result('*')">*</button>
+            <button onclick="Result('/')">/</button>
+        </div>
+    </div>
+
+    <script>
+        let result = document.getElementById('result');
+
+        function clearResult() {
+            result.value = '0';
+        }
+
+        function Result(value) {
+            if (result.value === '0' && value !== '.') {
+                result.value = value;
+            } else {
+                result.value += value;
+            }
+        }
+
+        function calculateResult() {
+            try {
+                result.value = eval(result.value);
+            } catch (error) {
+                result.value = 'Error';
+            }
+        }
+    </script>
+</body>
+</html>
+
+
